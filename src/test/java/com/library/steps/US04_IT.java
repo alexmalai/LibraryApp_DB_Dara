@@ -17,32 +17,32 @@ import java.util.List;
 public class US04_IT {
     BookPage bookPage;
     LoginPage loginPage;
-    @Given("the {string} on the home page")
+    @Given("the {string} on the home page IT")
     public void the_on_the_home_page(String librarian) {
         loginPage=new LoginPage();
         loginPage.login(librarian);
         BrowserUtil.waitFor(3);
     }
-    @Given("the user navigates to {string} page")
+    @Given("the user navigates to {string} page IT")
     public void the_user_navigates_to_page(String moduleName) {
         bookPage = new BookPage();
         bookPage.navigateModule(moduleName);
         BrowserUtil.waitFor(1);
     }
     String bookName;
-    @When("the user searches for {string} book")
+    @When("the user searches for {string} book IT")
     public void the_user_searches_for_book(String name) {
         bookName = name;
         bookPage = new BookPage();
         bookPage.search.sendKeys(bookName);
     }
-    @When("the user clicks edit book button")
+    @When("the user clicks edit book button IT")
     public void the_user_clicks_edit_book_button() {
         bookPage = new BookPage();
         BrowserUtil.waitForClickablility(bookPage.editBook(bookName), 5).click();
         BrowserUtil.waitFor(3);
     }
-    @Then("book information must match the Database")
+    @Then("book information must match the Database IT")
     public void book_information_must_match_the_database() {
         // bookName: global variable that can bu used in the query
         bookPage = new BookPage();
