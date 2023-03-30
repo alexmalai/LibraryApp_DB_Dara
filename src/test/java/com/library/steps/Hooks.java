@@ -1,6 +1,7 @@
 package com.library.steps;
 
 import com.library.utility.ConfigurationReader;
+import com.library.utility.DB_Util;
 import com.library.utility.Driver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -33,6 +34,16 @@ public class Hooks {
 
         Driver.closeDriver();
 
+    }
+
+    @Before ("@db")
+    public void setUpDB(){
+        DB_Util.createConnection();
+    }
+
+    @After ("@db")
+    public void destroyDB(){
+        DB_Util.destroy();
     }
 
 
