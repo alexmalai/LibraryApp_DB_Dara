@@ -15,21 +15,22 @@ public class Hooks {
 
     @Before("@ui")
     public void setUp(){
+
         System.out.println("this is coming from BEFORE");
         Driver.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         Driver.getDriver().manage().window().maximize();
         Driver.getDriver().get(ConfigurationReader.getProperty("library_url"));
 
-
     }
 
     @After("@ui")
     public void tearDown(Scenario scenario){
+
         System.out.println("this is coming from AFTER");
 
-        if(scenario.isFailed()){
+        if (scenario.isFailed()) {
             final byte[] screenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
-            scenario.attach(screenshot,"image/png","screenshot");
+            scenario.attach(screenshot, "image/png", "screenshot");
         }
 
         Driver.closeDriver();
@@ -51,8 +52,5 @@ public class Hooks {
         DB_Util.destroy();
 
     }
-
-
-
 
 }
