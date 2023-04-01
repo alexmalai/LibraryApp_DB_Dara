@@ -14,17 +14,18 @@ import java.util.concurrent.TimeUnit;
 public class Hooks {
 
     @Before("@ui")
-    public void setUp() {
+    public void setUp(){
+
         System.out.println("this is coming from BEFORE");
         Driver.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         Driver.getDriver().manage().window().maximize();
         Driver.getDriver().get(ConfigurationReader.getProperty("library_url"));
 
-
     }
 
     @After("@ui")
-    public void tearDown(Scenario scenario) {
+    public void tearDown(Scenario scenario){
+
         System.out.println("this is coming from AFTER");
 
         if (scenario.isFailed()) {
@@ -37,7 +38,7 @@ public class Hooks {
     }
 
     @Before("@db")
-    public void setUpDB() {
+    public void setUpDB(){
         System.out.println("DB connection is DONE ");
 
         DB_Util.createConnection();
@@ -45,10 +46,11 @@ public class Hooks {
     }
 
     @After("@db")
-    public void destroyDB() {
+    public void destroyDB(){
         System.out.println("DB connection is closed ");
 
         DB_Util.destroy();
 
     }
+
 }
